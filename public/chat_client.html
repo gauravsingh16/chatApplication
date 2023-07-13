@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head>
+
+<title>Chat Application</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head><body>
+<h4>Anonymous Chat Application</h4>
+<script src="jquery.min.js"></script>
+<script src="chat_client.js"></script>
+<link rel="stylesheet" type="text/css" href="chat_client.css">
+
+<form id="send_message_form">
+
+    <div><a id="username" href="../login_page.php"></a></div>
+
+    <table border="0"><tr>
+    <td width="100%"><div id="message_text" contenteditable="true"></div></td>
+    <td><img id="send" alt="Send" src="/img/mail.png"></td>
+    </tr></table>
+
+
+</form>
+
+<div id="message_log" class="scrollable_below_bottom_panel"></div>
+<div id="emoticons_palette" class="hidden scrollable_below_bottom_panel"></div>
+
+</body></html>

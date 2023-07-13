@@ -1,0 +1,59 @@
+
+form#send_message_form {
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: white;
+    border-top: 1px solid black;
+    margin-top: -1px;
+    max-height: 100vh;
+}
+.scrollable_below_bottom_panel {
+    padding-bottom: calc(2em + 13vw);
+}
+.hidden {
+    display: none;
+}
+body{
+    margin: 0;
+}
+* {
+    line-height: 1em;
+    font-size: 10vmin;
+}
+/* width: 100vw - (padding-left + padding-right + 0.1em) */
+input#sender{
+    border: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    width: calc(100vw - 1.1em);
+}
+#edit_tools, #send{
+    border: 1px dotted black;
+    margin: 0.1em;
+}
+#message_text{
+    max-width: 65vw;
+    min-height: 1.5em;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+table, tr, td {
+    vertical-align: top;
+    padding: 0;
+}
+.line *, .line {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.line {
+    border-bottom: solid;
+}
+#edit_tools, #send, .emoticon{
+    width: 13vw;
+    height: 13vw;
+    padding: 0.1em;
+}
