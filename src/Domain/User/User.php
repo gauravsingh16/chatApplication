@@ -30,6 +30,11 @@ class User implements JsonSerializable
         return $this->username;
     }
 
+    public function setUsername(string $username): string
+    {
+        return $this->username = $username;
+    }
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {

@@ -9,6 +9,7 @@ use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
+use App\Application\Util\DatabaseConfig;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -30,6 +31,9 @@ $dependencies($containerBuilder);
 // Set up repositories
 $repositories = require __DIR__ . '/../app/repositories.php';
 $repositories($containerBuilder);
+
+$pdo = (new DatabaseConfig())->connectGroupDB();
+$pdo = (new DatabaseConfig())->connectUserDB();
 
 // Build PHP-DI Container instance
 $container = $containerBuilder->build();

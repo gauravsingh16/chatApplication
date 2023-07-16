@@ -13,10 +13,21 @@ interface UserRepository
 
     /**
      * @param int $id
+     * @param string $username
      * @return User
      * @throws UserNotFoundException
      */
-    public function findUserOfId(int $id): User;
 
-  
+    public function addUsername(string $username): bool;
+
+    public function addGroupToUsername(string $username, string $group): bool;
+    
+    public function listAllGroups(): array;
+
+    public function createGroup(string $username , string $group): bool;
+
+    public function sendMessage(string $username, string $group, string $message): bool;
+
+    public function viewChatList(string $group):array;
+
 }

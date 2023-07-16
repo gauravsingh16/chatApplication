@@ -10,7 +10,7 @@ use App\Domain\User\User;
 use DI\Container;
 use Tests\TestCase;
 
-class ListUserActionTest extends TestCase
+class ListGroupsTest extends TestCase
 {
     public function testAction()
     {
@@ -23,13 +23,13 @@ class ListUserActionTest extends TestCase
 
         $userRepositoryProphecy = $this->prophesize(UserRepository::class);
         $userRepositoryProphecy
-            ->findAll()
+            ->listAllGroups()
             ->willReturn([$user])
             ->shouldBeCalledOnce();
 
         $container->set(UserRepository::class, $userRepositoryProphecy->reveal());
 
-        $request = $this->createRequest('GET', '/logged_users');
+        $request = $this->createRequest('GET', '/allgroups');
         $response = $app->handle($request);
 
         $payload = (string) $response->getBody();

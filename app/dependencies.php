@@ -17,7 +17,7 @@ return function (ContainerBuilder $containerBuilder) {
 
             $loggerSettings = $settings->get('logger');
             $logger = new Logger($loggerSettings['name']);
-
+            
             $processor = new UidProcessor();
             $logger->pushProcessor($processor);
 

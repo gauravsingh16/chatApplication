@@ -2,7 +2,6 @@
     if(isset($_POST['submit'])){
         header('Location : chat_client.html');
     }
-    $username = $_POST['username'];
 ?>
 
 <!DOCTYPE html>

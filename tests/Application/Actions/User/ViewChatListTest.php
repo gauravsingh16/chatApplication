@@ -14,7 +14,7 @@ use DI\Container;
 use Slim\Middleware\ErrorMiddleware;
 use Tests\TestCase;
 
-class ViewUserActionTest extends TestCase
+class ViewChatListTest extends TestCase
 {
     public function testAction()
     {
@@ -23,21 +23,28 @@ class ViewUserActionTest extends TestCase
         /** @var Container $container */
         $container = $app->getContainer();
 
-        $user = new User(1, 'bill.gates', 'Bill', 'Gates');
+        $group = "Sample";
+        $messages = ['GauravSingh'=>"This is my application",
+                    'ShreySingh'=>'This is gaurav application',
+    ];
 
         $userRepositoryProphecy = $this->prophesize(UserRepository::class);
         $userRepositoryProphecy
-            ->findUserOfId(1)
-            ->willReturn($user)
+            ->viewChatList($group)
+            ->willReturn($messages)
             ->shouldBeCalledOnce();
 
         $container->set(UserRepository::class, $userRepositoryProphecy->reveal());
-
-        $request = $this->createRequest('GET', '/users/1');
+        
+        $request = $this->createRequest('GET', '/chatlist');
+        $request = $request->withParsedBody([
+           'groups' => 'Sample',
+        ]);
+        
         $response = $app->handle($request);
 
         $payload = (string) $response->getBody();
-        $expectedPayload = new ActionPayload(200, $user);
+        $expectedPayload = new ActionPayload(200, $messages);
         $serializedPayload = json_encode($expectedPayload, JSON_PRETTY_PRINT);
 
         $this->assertEquals($serializedPayload, $payload);
@@ -58,16 +65,24 @@ class ViewUserActionTest extends TestCase
 
         /** @var Container $container */
         $container = $app->getContainer();
+        $username = "";
+        $group = "";
+        $message = "";
 
         $userRepositoryProphecy = $this->prophesize(UserRepository::class);
         $userRepositoryProphecy
-            ->findUserOfId(1)
+            ->sendMessage($username, $group, $message)
             ->willThrow(new UserNotFoundException())
             ->shouldBeCalledOnce();
 
         $container->set(UserRepository::class, $userRepositoryProphecy->reveal());
 
-        $request = $this->createRequest('GET', '/users/1');
+        $request = $this->createRequest('GET', '/chatlist');
+        $request = $request->withParsedBody([
+            'username' => "",
+            'groups'=> "",
+            'message_text' => "",
+        ]);
         $response = $app->handle($request);
 
         $payload = (string) $response->getBody();
