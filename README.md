@@ -15,3 +15,5 @@ Database Connection → DatabaseConfig.php
 index.php → Main Page
 login_page.php → HTML login form with asking username from user and passing to backend.
 chat_client.php → HTML page for message sending in chat application
+
+System Design in /Chatsys.pdf
